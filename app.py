@@ -348,11 +348,9 @@ def whatsapp():
         )
 
     # Start booking
-    if text in {"1", "book", "booking"}:
-        upsert_conv(user_id, step="ASK_TYRE",
-                    tyre_size=None, postcode=None, budget=None, preferred_date=None, preferred_time=None)
-        return twiml(ask_tyre_text())
-
+   if step == "MENU" and text in {"1", "book", "booking"}:
+    upsert_conv(user_id, step="ASK_TYRE")
+    return twiml(ask_tyre_text())
     conv = get_conv(user_id)
     step = conv["step"]
 
